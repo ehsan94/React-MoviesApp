@@ -3,20 +3,22 @@ import React from "react";
 import CardList from "../../Components/CardList/card-list.component";
 import SearchBox from "../../Components/search-box/search-box.component";
 
+import "./home-page.styles.css";
+
 class HomePage extends React.Component {
   constructor() {
     super();
     this.state = {
       movies: [],
-      searchField: '',
+      searchField: "",
     };
   }
   componentDidMount() {
-      if(!localStorage.getItem("searchField")){
-        localStorage.setItem("searchField", '')
-      }
+    if (!localStorage.getItem("searchField")) {
+      localStorage.setItem("searchField", "");
+    }
 
-    this.setState({ searchField: localStorage.getItem("searchField")});
+    this.setState({ searchField: localStorage.getItem("searchField") });
 
     fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
@@ -44,7 +46,7 @@ class HomePage extends React.Component {
       .concat(filteredMovies)
       .sort((a, b) => (a.popularity < b.popularity ? 1 : -1));
     return (
-      <div>
+      <div className="background">
         <SearchBox
           placeHolder="Search Movies"
           handle={this.handleChange}
