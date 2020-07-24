@@ -5,7 +5,10 @@ import { withRouter } from "react-router-dom";
 
 const Card = ({id, title, popularity, poster, history}) => (
   <div className="card-container"  onClick={() => {
-   history.push('/movie');
+   history.push({
+       pathname: '/movie',
+        search: '?id=' + id
+    });
   }}  >
     <img
       alt="monster"
